@@ -58,3 +58,6 @@ models/*.pt
 
 # OS
 Thumbs.db
+
+# linter
+pyproject.toml
