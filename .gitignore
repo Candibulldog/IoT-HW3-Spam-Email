@@ -42,11 +42,6 @@ env/
 # data/
 # *.csv
 
-# Models (use Git LFS for large files)
-models/*.pkl
-models/*.h5
-models/*.pt
-
 # Logs
 *.log
 

@@ -71,7 +71,7 @@ def load_models():
         return model, vectorizer
     except FileNotFoundError:
         st.error("⚠️ Model files not found. Please train the model first.")
-        st.info("Run: `python src/train.py`")
+        st.info("Run: `python -m src.train`")
         st.stop()
 
 
