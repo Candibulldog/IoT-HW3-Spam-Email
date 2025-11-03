@@ -137,8 +137,8 @@ Follow OpenSpec workflow:
 
 ## 📧 Contact
 
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Live Demo**: [Streamlit App](https://your-app.streamlit.app)
+- **GitHub**: [@Ezra Ke](https://github.com/Candibulldog)
+- **Live Demo**: [Streamlit App](https://iot-hw3-spam-email-dfzongqyjg8nwwwpspqryc.streamlit.app/)
 
 ---
 
