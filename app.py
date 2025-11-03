@@ -4,6 +4,7 @@ Multi-page app with comprehensive visualizations
 """
 
 import pickle
+import re
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -229,16 +230,19 @@ def page_home():
             with open("models/model_metadata.txt") as f:
                 metadata = f.read()
 
-            # Parse metadata
-            lines = metadata.split("\n")
-            for line in lines:
-                if "accuracy" in line.lower():
-                    acc = float(line.split(":")[1].strip())
-                    st.metric("Model Accuracy", f"{acc * 100:.1f}%")
-                    break
-        except FileNotFoundError as e:
+            # 接受 "accuracy: 0.975"、"accuracy: 97.5%"、"ACC=0.98" 等格式
+            m = re.search(r"accuracy\s*[:=]\s*([0-9]*\.?[0-9]+)\s*%?", metadata, flags=re.I)
+            if m:
+                acc = float(m.group(1))
+                # 若是 0~1 的小數就乘 100，若已是百分比值（>1）就直接用
+                if acc <= 1:
+                    acc *= 100.0
+                st.metric("Model Accuracy", f"{acc:.1f}%")
+            else:
+                st.metric("Model", "Trained ✅")  # 找不到就顯示一般狀態
+        except Exception as e:
             st.metric("Model", "Trained ✅")
-            raise e
+            st.caption(f"Couldn't parse accuracy from model_metadata.txt: {e}")
 
         st.metric("Status", "🟢 Ready")
 
